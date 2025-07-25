@@ -87,7 +87,7 @@ async def upload_file(file: UploadFile = File(...)):
         })
 
     except Exception as e:
-        logger.exception()
+        logger.exception(e)
         raise HTTPException(status_code=500, detail=str(e))
 
 if __name__ == "__main__":
