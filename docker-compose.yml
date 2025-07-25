@@ -1,0 +1,20 @@
+services:
+  receiver:
+    build: .
+    volumes:
+    - ./models/open-image-models:/root/.cache/open-image-models
+    - ./models/fast-plate-ocr:/root/.cache/fast-plate-ocr
+    - ./uploads:/app/uploads
+    - ./server.py:/app/server.py
+    ports:
+    - 8000:8000
+    env_file: 
+      - path: .env
+        required: false
+    stdin_open: true
+    tty: true
+    restart: always
+    command: python /app/server.py
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    
